@@ -132,6 +132,7 @@ function keyPressed() {
   }
 }
 
+// ================== UI COMPONENTS ==================
 function drawUIPanel() {
   fill(255, 150);
   rect(20, 20, width - 40, height - 40, 20);
