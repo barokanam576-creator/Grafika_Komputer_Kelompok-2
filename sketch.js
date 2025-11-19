@@ -131,6 +131,7 @@ function keyPressed() {
     inputBox.value("");
   }
 }
+}
 
 // ================== UI COMPONENTS ==================
 function drawUIPanel() {
@@ -166,4 +167,13 @@ function drawQuestionCard() {
   text("Tebak Cabang Olahraga", width - 315, 65);
   textSize(14);
   text(currentQ.text, width - 315, 100, 260);
+}
+// ================== ANIMASI BACKGROUND ==================
+function setGradientBackground() {
+  for (let y = 0; y < height; y++) {
+    let inter = map(y, 0, height, 0, 1);
+    let c = lerpColor(color('#4aa3ff'), color('#004d99'), inter);
+    stroke(c);
+    line(0, y, width, y);
+  }
 }
