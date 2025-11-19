@@ -53,3 +53,42 @@ function loadLevel(lv) {
   }
 }
 
+function draw() {
+  setGradientBackground();
+
+  drawUIPanel();
+  drawScoreAndLevel();
+
+  for (let s of sports) {
+    s.x += s.dx;
+    s.y += s.dy;
+
+    if (s.x < 50 || s.x > width - 50) s.dx *= -1;
+    if (s.y < 80 || s.y > height - 50) s.dy *= -1;
+
+    let d = dist(mouseX, mouseY, s.x, s.y);
+    let size = (d < 40) ? 60 : 48;
+
+    push();
+    translate(s.x, s.y);
+    if (d < 40) {
+      scale(1.2);
+      textSize(size);
+      fill(255);
+      text(s.icon, 0, 0);
+    } else {
+      textSize(size);
+      fill(255);
+      text(s.icon, 0, 0);
+    }
+    pop();
+  }
+
+  updateParticles();
+
+  if (currentQ) drawQuestionCard();
+
+  fill(255);
+  textSize(16);
+  text(feedback, 40, height - 70);
+}
