@@ -92,3 +92,42 @@ function draw() {
   textSize(16);
   text(feedback, 40, height - 70);
 }
+
+function mousePressed() {
+  for (let s of sports) {
+    let d = dist(mouseX, mouseY, s.x, s.y);
+    if (d < 40) askQuestion(s);
+  }
+}
+
+function askQuestion(sport) {
+  currentQ = {
+    sport,
+    text: "Nama olahraga apa ini? (Contoh: Sepak Bola, Bulu Tangkis, Basket, Renang, Voli, Tenis)"
+  };
+  feedback = "";
+}
+
+function keyPressed() {
+  if (keyCode === ENTER && currentQ) {
+    let ans = inputBox.value().trim().toLowerCase();
+    let correct = currentQ.sport.name.toLowerCase();
+
+    if (ans === correct) {
+      score++;
+      feedback = `Benar! Ini adalah ${currentQ.sport.name}. +1 skor`;
+      spawnParticles(currentQ.sport.x, currentQ.sport.y);
+
+      if (score % 3 === 0 && level < maxLevel) {
+        level++;
+        loadLevel(level);
+        feedback = `Level naik ke ${level}!`;
+      }
+    } else {
+      feedback = `Salah. Ini adalah ${currentQ.sport.name}.`;
+    }
+
+    currentQ = null;
+    inputBox.value("");
+  }
+}
