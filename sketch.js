@@ -131,3 +131,39 @@ function keyPressed() {
     inputBox.value("");
   }
 }
+
+// ================== UI COMPONENTS ==================
+function drawUIPanel() {
+  fill(255, 255, 255, 110);
+  noStroke();
+  rect(20, 20, 260, 120, 18);
+}
+
+function drawScoreAndLevel() {
+  fill(20);
+  textSize(26);
+  text(Skor: ${score}, 35, 60);
+
+  fill(255);
+  textSize(18);
+  stroke(30, 80, 255);
+  strokeWeight(2);
+  fill(30, 80, 255);
+  rect(35, 80, 120, 35, 10);
+  noStroke();
+  fill(255);
+  text(Level ${level}, 65, 103);
+}
+
+function drawQuestionCard() {
+  fill(255);
+  stroke(0);
+  strokeWeight(1);
+  rect(width - 330, 30, 300, 160, 15);
+  noStroke();
+  fill(0);
+  textSize(20);
+  text("Tebak Cabang Olahraga", width - 315, 65);
+  textSize(14);
+  text(currentQ.text, width - 315, 100, 260);
+}
