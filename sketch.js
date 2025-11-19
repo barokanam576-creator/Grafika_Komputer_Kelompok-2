@@ -131,3 +131,49 @@ function keyPressed() {
     inputBox.value("");
   }
 }
+
+function drawUIPanel() {
+  fill(255, 150);
+  rect(20, 20, width - 40, height - 40, 20);
+}
+
+function drawScoreAndLevel() {
+  fill(0);
+  textSize(18);
+  textAlign(LEFT);
+  text(`Skor: ${score}`, 40, 50);
+  text(`Level: ${level}`, width - 140, 50);
+}
+
+function drawQuestionCard() {
+  fill(0, 200);
+  rect(width / 2 - 200, height / 2 - 75, 400, 150, 15);
+  fill(255);
+  textSize(20);
+  textAlign(CENTER);
+  text(currentQ.text, width / 2, height / 2 - 20);
+}
+
+function setGradientBackground() {
+  for (let y = 0; y < height; y++) {
+    let inter = map(y, 0, height, 0, 1);
+    let c = lerpColor(color(46, 103, 248), color(2, 0, 36), inter);
+    stroke(c);
+    line(0, y, width, y);
+  } 
+}
+
+function spawnParticles(x, y) {
+  for (let i = 0; i < 20; i++) {
+    particles.push(new Particle(x, y));
+  }
+}
+function updateParticles() {
+  for (let i = particles.length - 1; i >= 0; i--) {
+    particles[i].update();
+    particles[i].show();
+    if (particles[i].isFinished()) {
+      particles.splice(i, 1);
+    }
+  }
+}
