@@ -131,3 +131,76 @@ function keyPressed() {
     inputBox.value("");
   }
 }
+
+// ================== UI COMPONENTS ==================
+function drawUIPanel() {
+  fill(255, 255, 255, 110);
+  noStroke();
+  rect(20, 20, 260, 120, 18);
+}
+
+function drawScoreAndLevel() {
+  fill(20);
+  textSize(26);
+  text(Skor: ${score}, 35, 60);
+
+  fill(255);
+  textSize(18);
+  stroke(30, 80, 255);
+  strokeWeight(2);
+  fill(30, 80, 255);
+  rect(35, 80, 120, 35, 10);
+  noStroke();
+  fill(255);
+  text(Level ${level}, 65, 103);
+}
+
+function drawQuestionCard() {
+  fill(255);
+  stroke(0);
+  strokeWeight(1);
+  rect(width - 330, 30, 300, 160, 15);
+  noStroke();
+  fill(0);
+  textSize(20);
+  text("Tebak Cabang Olahraga", width - 315, 65);
+  textSize(14);
+  text(currentQ.text, width - 315, 100, 260);
+}
+
+// ================== ANIMASI BACKGROUND ==================
+function setGradientBackground() {
+  for (let y = 0; y < height; y++) {
+    let inter = map(y, 0, height, 0, 1);
+    let c = lerpColor(color('#4aa3ff'), color('#004d99'), inter);
+    stroke(c);
+    line(0, y, width, y);
+  }
+}
+
+// ================== PARTIKEL ==================
+function spawnParticles(x, y) {
+  for (let i = 0; i < 25; i++) {
+    particles.push({
+      x: x,
+      y: y,
+      dx: random(-3, 3),
+      dy: random(-3, 3),
+      life: 40
+    });
+  }
+}
+
+function updateParticles() {
+  for (let p of particles) {
+    fill(255, 240, 0, p.life * 6);
+    noStroke();
+    ellipse(p.x, p.y, 10);
+
+    p.x += p.dx;
+    p.y += p.dy;
+    p.life--;
+  }
+
+  particles = particles.filter(p => p.life > 0);
+}
