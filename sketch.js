@@ -177,30 +177,3 @@ function setGradientBackground() {
     line(0, y, width, y);
   }
 }
-
-// ================== PARTIKEL ==================
-function spawnParticles(x, y) {
-  for (let i = 0; i < 25; i++) {
-    particles.push({
-      x: x,
-      y: y,
-      dx: random(-3, 3),
-      dy: random(-3, 3),
-      life: 40
-    });
-  }
-}
-
-function updateParticles() {
-  for (let p of particles) {
-    fill(255, 240, 0, p.life * 6);
-    noStroke();
-    ellipse(p.x, p.y, 10);
-
-    p.x += p.dx;
-    p.y += p.dy;
-    p.life--;
-  }
-
-  particles = particles.filter(p => p.life > 0);
-}
