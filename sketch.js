@@ -148,12 +148,20 @@ function drawScoreAndLevel() {
 
 function drawQuestionCard() {
   fill(0, 200);
-  rect(width / 2 - 200, height / 2 - 75, 400, 150, 15);
+  rect(width / 2 - 220, height / 2 - 85, 440, 170, 15);
+
   fill(255);
-  textSize(20);
-  textAlign(CENTER);
-  text(currentQ.text, width / 2, height / 2 - 20);
+  textSize(18);
+  textAlign(LEFT, TOP);
+
+  let textBoxX = width / 2 - 200;
+  let textBoxY = height / 2 - 60;
+  let textBoxWidth = 400;
+
+  // teks akan otomatis membungkus dalam width 400
+  text(currentQ.text, textBoxX, textBoxY, textBoxWidth);
 }
+
 
 function setGradientBackground() {
   for (let y = 0; y < height; y++) {
