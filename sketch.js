@@ -214,4 +214,28 @@ function updateParticles() {
 
   particles = particles.filter(p => p.life > 0);
 }
-// ...existing code...
+
+// ================== PARTIKEL CLASS ==================
+class Particle {
+  constructor(x, y) { 
+    this.x = x;
+    this.y = y;
+    this.dx = random(-3, 3);
+    this.dy = random(-3, 3);
+    this.life = 40;
+  } 
+  update() {
+    this.x += this.dx;
+    this.y += this.dy;
+    this.life--;
+  }
+  show() {
+    fill(255, 240, 0, this.life * 6);
+    noStroke();
+    ellipse(this.x, this.y, 10);
+  }
+  isFinished() {
+    return this.life <= 0;
+  }
+}
+
